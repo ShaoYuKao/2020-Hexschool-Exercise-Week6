@@ -1,15 +1,12 @@
 <template>
   <div>
-    這裡是 後台 訂單列表
+    <h2>這裡是後台首頁</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Orders',
-  data () {
-    return {
-    }
+  components: {
   },
   created () {
     // 取得 token 的 cookies

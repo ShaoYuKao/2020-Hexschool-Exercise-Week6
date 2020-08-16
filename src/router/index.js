@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.use(VueRouter)
+Vue.use(VueAxios, axios)
 
 const routes = [
   {
@@ -11,41 +14,42 @@ const routes = [
     children: [
       {
         path: '/index',
-        name: '前台首頁',
         component: () => import('../views/frontend/Index.vue')
       },
       {
         path: '/products',
-        name: '產品列表',
         component: () => import('../views/frontend/Products.vue')
       },
       {
         path: '/product/:id',
-        name: '產品頁面',
         component: () => import('../views/frontend/Product.vue')
       },
       {
         path: '/cart',
-        name: '購物車',
         component: () => import('../views/frontend/Cart.vue')
       }
     ]
   },
-  // 巢狀路由
   {
     path: '/login',
+    name: '後台登入',
     component: () => import('../views/Login.vue')
   },
   {
     path: '/admin',
     component: () => import('../views/backend/Dashboard.vue'),
+    redirect: '/admin/index',
     children: [
       {
-        path: 'products',
+        path: '/admin/index',
+        component: () => import('../views/backend/Index.vue')
+      },
+      {
+        path: '/admin/products',
         component: () => import('../views/backend/Products.vue')
       },
       {
-        path: 'orders',
+        path: '/admin/orders',
         component: () => import('../views/backend/Orders.vue')
       }
     ]
